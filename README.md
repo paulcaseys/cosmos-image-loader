@@ -1,6 +1,7 @@
 Image Loader Util
 ===================
 
+ImageLoaderWithRescaleSlideShow is a javascript image loading utility. target a div with a width and height, then the array of images can be automatically cropped, centered and animated with CSS3
 
 Usage 
 -------------------
