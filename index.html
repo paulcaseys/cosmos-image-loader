@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+<head>
+
+<title>Prototype</title>
+
+
+<link rel="stylesheet" type="text/css" href="css/desktop.css" />
+
+
+<!-- jquery library (required) -->
+<script type="text/javascript" src="js/libs/jquery/jquery-min.js"></script>
+
+<!-- CSS3 enhances jquery animations (helps with mobile device performance. not necessary) -->
+<script type="text/javascript" src="js/libs/jquery/jquery.animate-enhanced.min.js"></script>
+
+<!-- Easing Equations by Robert Penner (easeInQuad etc. not necessary) -->
+<script type="text/javascript" src="js/libs/jquery/jquery.easing.js"></script>
+
+<!-- image loading library -->
+<script type="text/javascript" src="js/libs/paulcasey_utils/ImgLoaderWithRescaleSlideShow.js"></script>
+
+
+</head>
+
+<body>
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+    
+    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly
+    var _il = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+
+    // single image, no slideshow
+    var _il2 = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+
+    // single image, does not listen whether the target element is re-sized so there is less processing taking place
+    var _il3 = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
+
+
+    // tests the resize listener
+    //var t=setTimeout(function(){$("#image_target_1").css('width', '400px')},6000);
+    //$("#image_target_1").animate({"width":"300px"}, 3000);
+});
+
+</script>
+
+
+
+<div id="image_target_1">   
+</div>
+
+
+<div id="image_target_2">    
+</div>
+
+
+<div id="image_target_3">    
+</div>
+
+
+</body>
+
+</html>
+
