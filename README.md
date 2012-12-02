@@ -22,14 +22,14 @@ Optional libraries, that enhance the animation
 Add the image loading library after the other libraries
 
 	<!-- image loading library -->
-	<script type="text/javascript" src="js/libs/paulcasey_utils/ImgLoaderWithRescaleSlideShow.js"></script>
+	<script type="text/javascript" src="js/libs/cosmos/ImgLoaderWithRescaleSlideShow.js"></script>
 
 
 Initialise
 ------------------------
 
 Function 
-`Paulcasey.Utils.ImageLoaderWithRescaleSlideShow(etc);`
+`Cosmos.Utils.ImageLoaderWithRescaleSlideShow(etc);`
 
 Arguments
 1. theTargetElement: which you would like the image to appear inside (element must have a width and height defined)
@@ -46,13 +46,13 @@ Javascript
 	$(document).ready(function(){ 
     
 	    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly
-	    var _il = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+	    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
 
 	    // single image, no slideshow
-	    var _il2 = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+	    var _il2 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
 
 	    // single image, does not listen whether the target element is re-sized so there is less processing taking place
-	    var _il3 = new Paulcasey.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
+	    var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
 
 	});

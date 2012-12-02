@@ -1,10 +1,10 @@
 
-if (!window.Paulcasey) {
-    window.Paulcasey = {};
+if (!window.Cosmos) {
+    window.Cosmos = {};
 }
 
-if (!window.Paulcasey.Utils) {
-    window.Paulcasey.Utils = {};
+if (!window.Cosmos.Utils) {
+    window.Cosmos.Utils = {};
 }
 
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
 });
 
 
-Paulcasey.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theImageArray, theIntervalSpeed, theFadeSpeed, theRescale, theCentre, theElementResizeListener) {
+Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theImageArray, theIntervalSpeed, theFadeSpeed, theRescale, theCentre, theElementResizeListener) {
 
 	$(theTargetElement).data("theTargetElement", theTargetElement);
 	$(theTargetElement).data("theImageArray", theImageArray);
@@ -82,24 +82,24 @@ Paulcasey.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, the
 			// ALL LOADED
 			
 			// positions the image
-			Paulcasey.Utils.PositionImage(theTargetElement);
+			Cosmos.Utils.PositionImage(theTargetElement);
 
 
 			if(theImageArray.length > 1){
 				// MULTIPLE IMAGES
-				Paulcasey.Utils.PlaySlideshow(theTargetElement);
-				setInterval(function() { Paulcasey.Utils.PlaySlideshow(theTargetElement); }, theIntervalSpeed+theFadeSpeed);
+				Cosmos.Utils.PlaySlideshow(theTargetElement);
+				setInterval(function() { Cosmos.Utils.PlaySlideshow(theTargetElement); }, theIntervalSpeed+theFadeSpeed);
 
 			} else {
 				// ONE IMAGE
-				Paulcasey.Utils.DisplayImage(theTargetElement, 0, theFadeSpeed);
+				Cosmos.Utils.DisplayImage(theTargetElement, 0, theFadeSpeed);
 			}	
 
 
 			// re-positions image/s if the div is re-sized 
 			if(theElementResizeListener == "elementResizeListenerEnabled") {
 				$(theTargetElement).resize(function(e){
-					Paulcasey.Utils.PositionImage($(theTargetElement).data("theTargetElement"));
+					Cosmos.Utils.PositionImage($(theTargetElement).data("theTargetElement"));
 				});
 			}
 		}
@@ -109,7 +109,7 @@ Paulcasey.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, the
 
 };
 
-Paulcasey.Utils.PlaySlideshow = function(theTargetElement) {
+Cosmos.Utils.PlaySlideshow = function(theTargetElement) {
 
 	//var theTargetElement = 	$(theTargetElementRef).data("theTargetElement");
 	var theImageArray = 		$(theTargetElement).data("theImageArray");
@@ -123,7 +123,7 @@ Paulcasey.Utils.PlaySlideshow = function(theTargetElement) {
 	var theTargetImageId = parseInt($(theTargetElement).data("theCurrentImageId"), 10);
 
 	// displays the image
-	Paulcasey.Utils.DisplayImage(theTargetElement, theTargetImageId, theFadeSpeed);
+	Cosmos.Utils.DisplayImage(theTargetElement, theTargetImageId, theFadeSpeed);
 
 	// defines the next image
 	var theCurrentImageId = 0;
@@ -137,7 +137,7 @@ Paulcasey.Utils.PlaySlideshow = function(theTargetElement) {
 
 
 
-Paulcasey.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFadeSpeed) {
+Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFadeSpeed) {
 
 	// loops through all the images
 	var index_highest = 0;   
@@ -158,7 +158,7 @@ Paulcasey.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theF
 	curImage.fadeIn(theFadeSpeed);
 };
 
-Paulcasey.Utils.PositionImage = function(theTargetElement) {
+Cosmos.Utils.PositionImage = function(theTargetElement) {
 	
 
 	$(theTargetElement+" .imageLoaderInnerContainer").css({"overflow":"hidden", "position":"absolute", "width":$(theTargetElement).width(), "height":$(theTargetElement).height()});
