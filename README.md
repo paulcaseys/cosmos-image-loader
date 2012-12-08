@@ -100,7 +100,7 @@ CSS
 
 Optional listeners
 ---------------------
-you can bind a callback to detect when the images are all loaded in the element
+you can bind a listener to detect when the images are all loaded in the element
 `$("#image_target_1").on("IMAGE_LOADED", customImageLoadedHandler);`
 
 this can be detected anywhere 
@@ -116,7 +116,7 @@ this can be detected anywhere
     } 
 
 
-Similarly, you can bind a callbach to detect when the images have not loaded correctly
+Similarly, you can bind a listener to detect when the images have not loaded correctly
 `$("#image_target_1").on("IMAGE_LOAD_ERROR", customImageLoadErrorHandler);`
 
 
