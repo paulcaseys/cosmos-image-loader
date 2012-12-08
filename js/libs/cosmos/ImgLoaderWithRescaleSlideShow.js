@@ -76,11 +76,13 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 		
 		if($broken.length > 0){
 			console.log('ERROR in ImageLoaderWithRescaleSlideShow(): ' + $broken.length + ' broken image "'+this.attr('src')+'"' );
+			$(theTargetElement).trigger('IMAGE_LOAD_ERROR');
 		}
 		if($proper.length > theImageArray.length-1){
 			
 			// ALL LOADED
-			
+			$(theTargetElement).trigger('IMAGE_LOADED');
+
 			// positions the image
 			Cosmos.Utils.PositionImage(theTargetElement);
 

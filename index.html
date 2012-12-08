@@ -43,9 +43,32 @@ $(document).ready(function(){
     var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
 
-    // tests the resize listener
+    // OPTIONAL: LISTENS WHEN LOADED
+    // tests the custom IMAGE_LOADED event listener
+    $("#image_target_1").on("IMAGE_LOADED", customImageLoadedHandler);
+
+    function customImageLoadedHandler(e){
+      // IMAGES ARE LOADED
+      
+      console.log("The images are now loaded on element id: " + e.target.id);
+      console.log("The images were: "+$(e.target).data("theImageArray"));
+
+      // removes the listener
+      $(e.target).off("IMAGE_LOADED");
+    }
+
+    // OPTIONAL: LISTENS WHEN LOADED
+    /*
+    $("#image_target_1").on("IMAGE_LOAD_ERROR", customImageLoadErrorHandler);
+    function customImageLoadErrorHandler(e){
+      $(e.target).off("IMAGE_LOAD_ERROR");
+    }
+    */
+
+    // OPTIONAL: TESTS THE RESIZE LISTENER
     //var t=setTimeout(function(){$("#image_target_1").css('width', '400px')},6000);
     //$("#image_target_1").animate({"width":"300px"}, 3000);
+    
 });
 
 </script>

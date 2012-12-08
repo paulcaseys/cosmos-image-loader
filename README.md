@@ -98,5 +98,29 @@ CSS
 	}
 
 
-Recommendation: define theElementResizeListener as "elementResizeListenerDisabled" unless you expect theTargetElement to change dimensions. "elementResizeListenerEnabled" will accumulate processing   
+Optional listeners
+---------------------
+you can bind a callback to detect when the images are all loaded in the element
+`$("#image_target_1").on("IMAGE_LOADED", customImageLoadedHandler);`
+
+this can be detected anywhere 
+
+    function customImageLoadedHandler(e){
+      // IMAGES ARE LOADED
+      
+      console.log("The images are now loaded on element id: " + e.target.id);
+      console.log("The images were: "+$(e.target).data("theImageArray"));
+
+      // removes the listener
+      $(e.target).off("IMAGE_LOADED");
+    } 
+
+
+Similarly, you can bind a callbach to detect when the images have not loaded correctly
+`$("#image_target_1").on("IMAGE_LOAD_ERROR", customImageLoadErrorHandler);`
+
+
+Performance recommendation
+---------------------
+Please define theElementResizeListener as "elementResizeListenerDisabled" unless you expect theTargetElement to change dimensions. "elementResizeListenerEnabled" will accumulate processing   
 
