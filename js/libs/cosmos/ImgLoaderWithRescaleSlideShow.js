@@ -41,7 +41,7 @@ $(document).ready(function(){
 });
 
 
-Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theImageArray, theIntervalSpeed, theFadeSpeed, theRescale, theCentre, theElementResizeListener) {
+Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theImageArray, theIntervalSpeed, theFadeSpeed, theRescale, theCentre, theElementResizeListener, varObj) {
 
 	$(theTargetElement).data("theTargetElement", theTargetElement);
 	$(theTargetElement).data("theImageArray", theImageArray);
@@ -51,6 +51,13 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 	$(theTargetElement).data("theRescale", theRescale);
 	$(theTargetElement).data("theCentre", theCentre);
 	$(theTargetElement).data("theElementResizeListener", theElementResizeListener);
+
+	varObj = typeof varObj !== 'undefined' ? varObj : new Object();	
+	varObj.success = typeof varObj.success !== 'undefined' ? varObj.success : '';	
+	varObj.error = typeof varObj.error !== 'undefined' ? varObj.error : '';			
+
+	$(theTargetElement).data("varObj", varObj);
+	
 
 	$(theTargetElement).data("theCurrentImageId", 0);
 
@@ -75,13 +82,19 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 	$(theTargetElement +' .appendedImage').imagesLoaded(function( $images, $proper, $broken ) {
 		
 		if($broken.length > 0){
-			console.log('ERROR in ImageLoaderWithRescaleSlideShow(): ' + $broken.length + ' broken image "'+this.attr('src')+'"' );
-			$(theTargetElement).trigger('IMAGE_LOAD_ERROR');
+			console.log('ERROR in ImageLoaderWithRescaleSlideShow(): ' + $broken.length + ' broken image "'+this.attr('src')+'"' );			
+			if(varObj.error !== ''){
+				varObj.error($(theTargetElement));
+			}	
 		}
 		if($proper.length > theImageArray.length-1){
 			
 			// ALL LOADED
 			$(theTargetElement).trigger('IMAGE_LOADED');
+			
+			if(varObj.success !== ''){
+				varObj.success($(theTargetElement));
+			}			
 
 			// positions the image
 			Cosmos.Utils.PositionImage(theTargetElement);

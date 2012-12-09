@@ -45,8 +45,8 @@ Javascript
 
 	$(document).ready(function(){ 
     
-	    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly
-	    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+	    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly, with success and error callbacks
+	    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler});
 
 	    // single image, no slideshow
 	    var _il2 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
@@ -100,24 +100,26 @@ CSS
 
 Optional listeners
 ---------------------
-you can bind a listener to detect when the images are all loaded in the element
-`$("#image_target_1").on("IMAGE_LOADED", customImageLoadedHandler);`
+You can add success and error callbacks detect when the images are all loaded in the element
 
-this can be detected anywhere 
+`var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler});`
 
+When the images are loaded, this calls the following function (which was defined in the constructor) 
+
+    // OPTIONAL: LISTENS WHEN LOADED
     function customImageLoadedHandler(e){
       // IMAGES ARE LOADED
-      
-      console.log("The images are now loaded on element id: " + e.target.id);
-      console.log("The images were: "+$(e.target).data("theImageArray"));
-
-      // removes the listener
-      $(e.target).off("IMAGE_LOADED");
-    } 
+      console.log("The images are now loaded on element id: " + e.data("theTargetElement"));
+      console.log("The images were: "+e.data("theImageArray"));
+    }
 
 
-Similarly, you can bind a listener to detect when the images have not loaded correctly
-`$("#image_target_1").on("IMAGE_LOAD_ERROR", customImageLoadErrorHandler);`
+When an image does not load, this calls the following function (which was defined in the constructor) 
+
+    // OPTIONAL: LISTENS WHEN NOT LOADED   
+    function customImageLoadErrorHandler(e){
+      console.log("ERROR: One of the following images could not load: "+e.data("theImageArray"));
+    }
 
 
 Performance recommendation
