@@ -122,7 +122,7 @@ When an image does not load, this calls the following function (which was define
 
 When an image slide changes, this calls the following function (which was defined in the constructor) 
 
-    // OPTIONAL: LISTENS WHEN NOT LOADED   
+    // OPTIONAL: LISTENS WHEN THE SLIDESHOW IMAGE CHANGES  
     function customImageChangeHandler(e){
       console.log("CHANGE: you are now viewing: "+e.data("curImageSrc")+" (id: "+e.data("curImageId")+"), on the element: "+ e.data("theTargetElement"));
     }
