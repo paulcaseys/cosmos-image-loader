@@ -102,15 +102,14 @@ Optional listeners
 ---------------------
 You can add success and error callbacks detect when the images are all loaded in the element
 
-`var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler});`
+`var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler, change:customImageChangeHandler});`
 
 When the images are loaded, this calls the following function (which was defined in the constructor) 
 
-    // OPTIONAL: LISTENS WHEN LOADED
+	// OPTIONAL: LISTENS WHEN LOADED
     function customImageLoadedHandler(e){
       // IMAGES ARE LOADED
-      console.log("The images are now loaded on element id: " + e.data("theTargetElement"));
-      console.log("The images were: "+e.data("theImageArray"));
+      console.log("SUCCESS: The images are now loaded on element: " + e.data("theTargetElement") + ". The images are: "+e.data("theImageArray"));
     }
 
 
@@ -119,6 +118,13 @@ When an image does not load, this calls the following function (which was define
     // OPTIONAL: LISTENS WHEN NOT LOADED   
     function customImageLoadErrorHandler(e){
       console.log("ERROR: One of the following images could not load: "+e.data("theImageArray"));
+    }
+
+When an image slide changes, this calls the following function (which was defined in the constructor) 
+
+    // OPTIONAL: LISTENS WHEN NOT LOADED   
+    function customImageChangeHandler(e){
+      console.log("CHANGE: you are now viewing: "+e.data("curImageSrc")+" (id: "+e.data("curImageId")+"), on the element: "+ e.data("theTargetElement"));
     }
 
 

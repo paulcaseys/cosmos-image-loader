@@ -34,7 +34,7 @@
 $(document).ready(function(){ 
     
     // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly
-    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler});
+    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler, change:customImageChangeHandler});
 
     // single image, no slideshow
     var _il2 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
@@ -47,13 +47,17 @@ $(document).ready(function(){
     // OPTIONAL: LISTENS WHEN LOADED
     function customImageLoadedHandler(e){
       // IMAGES ARE LOADED
-      console.log("The images are now loaded on element id: " + e.data("theTargetElement"));
-      console.log("The images were: "+e.data("theImageArray"));
+      console.log("SUCCESS: The images are now loaded on element: " + e.data("theTargetElement") + ". The images are: "+e.data("theImageArray"));
     }
 
     // OPTIONAL: LISTENS WHEN NOT LOADED   
     function customImageLoadErrorHandler(e){
       console.log("ERROR: One of the following images could not load: "+e.data("theImageArray"));
+    }
+
+    // OPTIONAL: LISTENS WHEN NOT LOADED   
+    function customImageChangeHandler(e){
+      console.log("CHANGE: you are now viewing: "+e.data("curImageSrc")+" (id: "+e.data("curImageId")+"), on the element: "+ e.data("theTargetElement"));
     }
 
     // OPTIONAL: TESTS THE RESIZE LISTENER

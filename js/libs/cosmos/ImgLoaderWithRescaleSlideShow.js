@@ -54,6 +54,7 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 
 	varObj = typeof varObj !== 'undefined' ? varObj : new Object();	
 	varObj.success = typeof varObj.success !== 'undefined' ? varObj.success : '';	
+	varObj.change = typeof varObj.change !== 'undefined' ? varObj.change : '';	
 	varObj.error = typeof varObj.error !== 'undefined' ? varObj.error : '';			
 
 	$(theTargetElement).data("varObj", varObj);
@@ -97,24 +98,24 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 			}			
 
 			// positions the image
-			Cosmos.Utils.PositionImage(theTargetElement);
+			Cosmos.Utils.PositionImage(theTargetElement, varObj);
 
 
 			if(theImageArray.length > 1){
 				// MULTIPLE IMAGES
-				Cosmos.Utils.PlaySlideshow(theTargetElement);
-				setInterval(function() { Cosmos.Utils.PlaySlideshow(theTargetElement); }, theIntervalSpeed+theFadeSpeed);
+				Cosmos.Utils.PlaySlideshow(theTargetElement, varObj);
+				setInterval(function() { Cosmos.Utils.PlaySlideshow(theTargetElement, varObj); }, theIntervalSpeed+theFadeSpeed);
 
 			} else {
 				// ONE IMAGE
-				Cosmos.Utils.DisplayImage(theTargetElement, 0, theFadeSpeed);
+				Cosmos.Utils.DisplayImage(theTargetElement, 0, theFadeSpeed, varObj);
 			}	
 
 
 			// re-positions image/s if the div is re-sized 
 			if(theElementResizeListener == "elementResizeListenerEnabled") {
 				$(theTargetElement).resize(function(e){
-					Cosmos.Utils.PositionImage($(theTargetElement).data("theTargetElement"));
+					Cosmos.Utils.PositionImage($(theTargetElement).data("theTargetElement"), varObj);
 				});
 			}
 		}
@@ -124,7 +125,7 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 
 };
 
-Cosmos.Utils.PlaySlideshow = function(theTargetElement) {
+Cosmos.Utils.PlaySlideshow = function(theTargetElement, varObj) {
 
 	//var theTargetElement = 	$(theTargetElementRef).data("theTargetElement");
 	var theImageArray = 		$(theTargetElement).data("theImageArray");
@@ -138,7 +139,7 @@ Cosmos.Utils.PlaySlideshow = function(theTargetElement) {
 	var theTargetImageId = parseInt($(theTargetElement).data("theCurrentImageId"), 10);
 
 	// displays the image
-	Cosmos.Utils.DisplayImage(theTargetElement, theTargetImageId, theFadeSpeed);
+	Cosmos.Utils.DisplayImage(theTargetElement, theTargetImageId, theFadeSpeed, varObj);
 
 	// defines the next image
 	var theCurrentImageId = 0;
@@ -152,7 +153,7 @@ Cosmos.Utils.PlaySlideshow = function(theTargetElement) {
 
 
 
-Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFadeSpeed) {
+Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFadeSpeed, varObj) {
 
 	// loops through all the images
 	var index_highest = 0;   
@@ -164,16 +165,28 @@ Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFade
 	    }
 	});
 
-	var curImage =	$(theTargetElement + " .appendedImage"+theTargetImageId);
+	var curImage = theTargetElement + " .appendedImage"+theTargetImageId
+	var curImageSrc = $(curImage).attr("src");
 
-	curImage.css({"position": "absolute", "z-index":index_highest+1});
+	$(theTargetElement).data("curImage", curImage);
+	$(theTargetElement).data("curImageSrc", curImageSrc);
+	$(theTargetElement).data("curImageId", theTargetImageId);
+
+	if(varObj){
+		if(varObj.change !== ''){
+			varObj.change($(theTargetElement));
+		}
+	}
+	
+
+	$(curImage).css({"position": "absolute", "z-index":index_highest+1});
 
 
-	curImage.css("display", "none");
-	curImage.fadeIn(theFadeSpeed);
+	$(curImage).css("display", "none");
+	$(curImage).fadeIn(theFadeSpeed);
 };
 
-Cosmos.Utils.PositionImage = function(theTargetElement) {
+Cosmos.Utils.PositionImage = function(theTargetElement, varObj) {
 	
 
 	$(theTargetElement+" .imageLoaderInnerContainer").css({"overflow":"hidden", "position":"absolute", "width":$(theTargetElement).width(), "height":$(theTargetElement).height()});
