@@ -22,7 +22,7 @@ Optional libraries, that enhance the animation
 Add the image loading library after the other libraries
 
 	<!-- image loading library -->
-	<script type="text/javascript" src="js/libs/cosmos/ImgLoaderWithRescaleSlideShow.js"></script>
+	<script type="text/javascript" src="js/libs/cosmos/cosmos-image-loader.1.01.js"></script>
 
 
 Initialise
