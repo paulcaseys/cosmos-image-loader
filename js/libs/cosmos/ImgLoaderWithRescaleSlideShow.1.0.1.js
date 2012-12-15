@@ -180,16 +180,14 @@ Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFade
 	}
 	
 
-	$(curImage).css({"z-index":index_highest+1});
-
-
-	$(curImage).css("display", "none");
+	$(curImage).css({"position":"absolute", "z-index":index_highest+1, "display": "none"});
 	$(curImage).fadeIn(theFadeSpeed);
 };
 
 Cosmos.Utils.PositionImage = function(theTargetElement, varObj) {
 	
 
+	$(theTargetElement).css({"text-align":"left"})
 	$(theTargetElement+" .imageLoaderInnerContainer").css({"overflow":"hidden", "position":"absolute", "width":$(theTargetElement).width(), "height":$(theTargetElement).height()});
 
 
