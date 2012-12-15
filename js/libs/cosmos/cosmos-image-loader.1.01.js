@@ -1,3 +1,10 @@
+/*
+cosmos-image-loader plugin v1.01
+---
+http://github.com/paulcaseys/ImageLoaderWithRescaleSlideShow
+http://paulcasey.net
+@paulcaseys
+*/
 
 if (!window.Cosmos) {
     window.Cosmos = {};
@@ -6,8 +13,6 @@ if (!window.Cosmos) {
 if (!window.Cosmos.Utils) {
     window.Cosmos.Utils = {};
 }
-
-
 
 // CONSOLE FIX
 // Avoid `console` errors in browsers that lack a console (from html5 boilerplate)
@@ -35,11 +40,8 @@ if (!window.Cosmos.Utils) {
 
 
 
-
 $(document).ready(function(){ 
-
 });
-
 
 Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theImageArray, theIntervalSpeed, theFadeSpeed, theRescale, theCentre, theElementResizeListener, varObj) {
 
@@ -72,7 +74,7 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 		$(theTargetElement+" .imageLoaderInnerContainer").append($('<img>', {
 	    	src:   theImageArray[i],
 	    	'class': 'appendedImage appendedImage'+i,
-	    	'style': '-ms-interpolation-mode: bicubic;', // smooths image in older v\versions of IE
+	    	'style': '-ms-interpolation-mode: bicubic;', // smooths image in older v\versions of IE, may cause a slight edge
 	    	'data-imgId': i
 	    }));
 	}
