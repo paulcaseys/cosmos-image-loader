@@ -72,6 +72,7 @@ Cosmos.Utils.ImageLoaderWithRescaleSlideShow = function(theTargetElement, theIma
 		$(theTargetElement+" .imageLoaderInnerContainer").append($('<img>', {
 	    	src:   theImageArray[i],
 	    	'class': 'appendedImage appendedImage'+i,
+	    	'style': '-ms-interpolation-mode: bicubic;', // smooths image in older v\versions of IE
 	    	'data-imgId': i
 	    }));
 	}
