@@ -180,7 +180,7 @@ Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFade
 	}
 	
 
-	$(curImage).css({"position": "absolute", "z-index":index_highest+1});
+	$(curImage).css({"z-index":index_highest+1});
 
 
 	$(curImage).css("display", "none");
@@ -245,6 +245,7 @@ Cosmos.Utils.PositionImage = function(theTargetElement, varObj) {
 			} else {
 				curImage.css({"margin-top": "0px"});
 			}
+			console.log(curImage.attr("src")+" : "+curImage.css("margin-left"));
 		}
 
 
