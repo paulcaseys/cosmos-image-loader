@@ -168,7 +168,7 @@ Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFade
 	    }
 	});
 
-	var curImage = theTargetElement + " .appendedImage"+theTargetImageId
+	var curImage = theTargetElement + " .appendedImage"+theTargetImageId;
 	var curImageSrc = $(curImage).attr("src");
 
 	$(theTargetElement).data("curImage", curImage);
@@ -189,7 +189,7 @@ Cosmos.Utils.DisplayImage = function(theTargetElement, theTargetImageId, theFade
 Cosmos.Utils.PositionImage = function(theTargetElement, varObj) {
 	
 
-	$(theTargetElement).css({"text-align":"left"})
+	$(theTargetElement).css({"text-align":"left"});
 	$(theTargetElement+" .imageLoaderInnerContainer").css({"overflow":"hidden", "position":"absolute", "width":$(theTargetElement).width(), "height":$(theTargetElement).height()});
 
 
