@@ -42,6 +42,12 @@ $(document).ready(function(){
     // single image, does not listen whether the target element is re-sized so there is less processing taking place
     var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
+    // single image, resizes to fit the entire image inside the div (instead of cropping)
+    var _il4 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_4", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "centreEnabled", "elementResizeListenerDisabled");
+
+    // single image, aligns to the top of the target element (instead of the centre)
+    var _il5 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_5", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "topAlignEnabled", "elementResizeListenerDisabled");
+
 
 
     // OPTIONAL: LISTENS WHEN LOADED
@@ -79,6 +85,14 @@ $(document).ready(function(){
 
 
 <div id="image_target_3">    
+</div>
+
+
+<div id="image_target_4">    
+</div>
+
+
+<div id="image_target_5">    
 </div>
 
 

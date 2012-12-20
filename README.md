@@ -36,8 +36,8 @@ Arguments
 2. theImageArray: this can vary from 1 image to dozens
 3. theIntervalSpeed: the gap between slides (in milliseconds)
 4. theFadeSpeed: the speed that the images fade in (in milliseconds)
-5. theRescale: "rescaleEnabled" will resize the image according to the theTargetElement
-6. theCentre: "centreEnabled" will center the image inside the theTargetElement
+5. theRescale: "rescaleEnabled" will resize and crop the image according to the theTargetElement. "rescaleInnerEnabled" will resize the so it does not crop inside theTargetElement
+6. theCentre: "centreEnabled" will center the image inside the theTargetElement. "topAlignEnabled" will align the image to the top of theTargetElement
 7. theElementResizeListener: "elementResizeListenerEnabled" will bind a listener on theTargetElement, to detect if it resizes, then the image will re-position accordingly. 
 
 
@@ -53,6 +53,12 @@ Javascript
 
 	    // single image, does not listen whether the target element is re-sized so there is less processing taking place
 	    var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
+
+	    // single image, resizes to fit the entire image inside the div (instead of cropping)
+	    var _il4 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_4", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "centreEnabled", "elementResizeListenerDisabled");
+
+	    // single image, aligns to the top of the target element (instead of the centre)
+	    var _il5 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_5", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "topAlignEnabled", "elementResizeListenerDisabled");
 
 
 	});
@@ -72,6 +78,16 @@ HTML
 	<div id="image_target_3">    
 	</div>
 
+
+	<div id="image_target_4">    
+	</div>
+
+
+	<div id="image_target_5">    
+	</div>
+
+
+
 CSS
 
 
@@ -90,6 +106,20 @@ CSS
 		background-color: #00ff00;
 	}
 	#image_target_3 {
+		margin: 30px;
+		width: 60px;
+		height: 100px;
+		border: solid 1px #333333;
+		background-color: #00ff00;
+	}
+	#image_target_4 {
+		margin: 30px;
+		width: 60px;
+		height: 100px;
+		border: solid 1px #333333;
+		background-color: #00ff00;
+	}
+	#image_target_5 {
 		margin: 30px;
 		width: 60px;
 		height: 100px;

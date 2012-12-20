@@ -220,32 +220,41 @@ Cosmos.Utils.PositionImage = function(theTargetElement, varObj) {
 		// crops and rescales the image
 		if(theRescale == "rescaleEnabled"){
 
-				curImage.css({"height": targetHeight +"px", "width": "auto"});
-				imgHeight = targetHeight;
-				imgWidth = Math.round(imgHeight * imgAspect);
-				
-				if((targetHeight * imgAspect) < targetWidth){
-					curImage.css({"width": targetWidth +"px","height":"auto"});
-					imgWidth = targetWidth;
-					imgHeight = Math.round(imgWidth / imgAspect);
-				}
+			imgHeight = targetHeight;
+			imgWidth = Math.round(imgHeight * imgAspect);
+			curImage.css({"width": imgWidth, "height": targetHeight +"px"});
+			
+			if((targetHeight * imgAspect) < targetWidth){
+				imgWidth = targetWidth;
+				imgHeight = Math.round(imgWidth / imgAspect);
+				curImage.css({"width": targetWidth +"px","height":imgHeight});
+			}
+
+		} else if (theRescale == "rescaleInnerEnabled"){
+
+			curImage.css({"height": targetHeight +"px", "width": "auto"});
+			imgHeight = targetHeight;
+			imgWidth = Math.round(imgHeight * imgAspect);
+			
+			if((targetHeight * imgAspect) > targetWidth){
+				curImage.css({"width": targetWidth +"px","height":"auto"});
+				imgWidth = targetWidth;
+				imgHeight = Math.round(imgWidth / imgAspect);
+			}
 
 		}
 
 		// centers the image
 		if (theCentre == "centreEnabled") {
 
-			if(imgWidth > targetWidth){
-				curImage.css({"margin-left":"-"+ Math.round((imgWidth - targetWidth) / 2) +"px"});
-			} else {
-				curImage.css({"margin-left": "0px"});
-			}
-			if(imgHeight > targetHeight){
-				curImage.css({"margin-top":"-"+ Math.round((imgHeight - targetHeight) / 2) +"px"});
-			} else {
-				curImage.css({"margin-top": "0px"});
-			}
-			console.log(curImage.attr("src")+" : "+curImage.css("margin-left"));
+			curImage.css({"margin-left": Math.round((targetWidth - imgWidth) / 2) +"px"});			
+			curImage.css({"margin-top": Math.round((targetHeight - imgHeight) / 2) +"px"});
+			
+		} else if (theCentre == "topAlignEnabled") {
+
+			curImage.css({"margin-left": Math.round((targetWidth - imgWidth) / 2) +"px"});			
+			curImage.css({"margin-top": "0px"});
+
 		}
 
 
