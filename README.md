@@ -33,7 +33,7 @@ Function
 
 Arguments
 1. theTargetElement: which you would like the image to appear inside (element must have a width and height defined)
-2. theImageArray: this can vary from 1 image to dozens
+2. theImageArray: this can vary from 1 image to dozens, you can also attribute a background-color to each image
 3. theIntervalSpeed: the gap between slides (in milliseconds)
 4. theFadeSpeed: the speed that the images fade in (in milliseconds)
 5. theRescale: "rescaleEnabled" will resize and crop the image according to the theTargetElement. "rescaleInnerEnabled" will resize the so it does not crop inside theTargetElement
@@ -45,20 +45,24 @@ Javascript
 
 	$(document).ready(function(){ 
     
-	    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly, with success and error callbacks
-	    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", ["images/sample1.jpg", "images/sample2.jpg"], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler});
+		    
+	    // multiple images slideshow. listens whether the target element is re-sized, then re-positions accordingly
+	    var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_1", [{"img":"images/sample1.jpg"}, {"img":"images/sample2.jpg"}], 2000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled", {success:customImageLoadedHandler, error:customImageLoadErrorHandler, change:customImageChangeHandler});
 
 	    // single image, no slideshow
-	    var _il2 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", ["images/sample3.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
+	    var _il2 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_2", [{"img":"images/sample1.jpg"}], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerEnabled");
 
 	    // single image, does not listen whether the target element is re-sized so there is less processing taking place
-	    var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", ["images/sample1.jpg"], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
+	    var _il3 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_3", [{"img":"images/sample1.jpg"}], 1000, 1000, "rescaleEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
 	    // single image, resizes to fit the entire image inside the div (instead of cropping)
-	    var _il4 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_4", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "centreEnabled", "elementResizeListenerDisabled");
+	    var _il4 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_4", [{"img":"images/sample1.jpg", "background-color":"#000000"}], 1000, 1000, "rescaleInnerEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
 	    // single image, aligns to the top of the target element (instead of the centre)
-	    var _il5 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_5", ["images/sample1.jpg"], 1000, 1000, "rescaleInnerEnabled", "topAlignEnabled", "elementResizeListenerDisabled");
+	    var _il5 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_5", [{"img":"images/sample1.jpg"}], 1000, 1000, "rescaleInnerEnabled", "topAlignEnabled", "elementResizeListenerDisabled");
+
+	    // images with background-colors
+	    var _il6 = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#image_target_6", [{"img":"images/sample1.jpg", "background-color":"#000000"}, {"img":"images/sample2.jpg", "background-color":"#FFFFFF"}], 1000, 1000, "rescaleInnerEnabled", "centreEnabled", "elementResizeListenerDisabled");
 
 
 	});
@@ -84,6 +88,10 @@ HTML
 
 
 	<div id="image_target_5">    
+	</div>
+
+
+	<div id="image_target_6">    
 	</div>
 
 
@@ -120,6 +128,13 @@ CSS
 		background-color: #00ff00;
 	}
 	#image_target_5 {
+		margin: 30px;
+		width: 60px;
+		height: 100px;
+		border: solid 1px #333333;
+		background-color: #00ff00;
+	}
+	#image_target_6 {
 		margin: 30px;
 		width: 60px;
 		height: 100px;
